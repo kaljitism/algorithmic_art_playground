@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:generative_art_playground/blob_field.dart';
 import 'package:generative_art_playground/fading_object.dart';
 import 'package:generative_art_playground/moving_particles.dart';
 
@@ -43,6 +44,17 @@ class _MyRouterState extends State<MyRouter> {
               );
             },
             title: const Text('Moving Particles'),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BlobField(),
+                ),
+              );
+            },
+            title: const Text('Moving Particles in a Field'),
           ),
         ],
       ),
