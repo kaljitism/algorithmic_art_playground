@@ -1,7 +1,22 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:generative_art_playground/particle.dart';
+
+class Particle {
+  Offset position;
+  Color color;
+  double speed;
+  double theta;
+  double radius;
+
+  Particle({
+    required this.position,
+    required this.color,
+    required this.speed,
+    required this.theta,
+    required this.radius,
+  });
+}
 
 class MovingParticles extends StatefulWidget {
   const MovingParticles({super.key});
@@ -119,7 +134,6 @@ class ParticlePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
-  }
+  bool shouldRepaint(covariant ParticlePainter oldDelegate) =>
+      animationValue != oldDelegate.animationValue;
 }
