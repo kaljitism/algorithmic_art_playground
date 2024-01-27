@@ -1,9 +1,11 @@
+import 'dart:io';
 import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:path_provider/path_provider.dart';
 
 class Particle {
   Offset? position;
@@ -141,7 +143,10 @@ class _BlobFieldState extends State<BlobField>
         await image.toByteData(format: ui.ImageByteFormat.png);
 
     final Uint8List pngBytes = byteData!.buffer.asUint8List();
-
+    final directory = await getApplicationDocumentsDirectory();
+    final filePath = '${directory.path}/saved_image.png';
+    final file = File(filePath);
+    await file.writeAsBytes(pngBytes);
     return pngBytes;
   }
 
