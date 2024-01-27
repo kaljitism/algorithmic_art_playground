@@ -1,6 +1,9 @@
 import 'dart:math';
+import 'dart:ui' as ui;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class Particle {
   Offset? position;
@@ -17,6 +20,8 @@ class Particle {
     this.radius,
   });
 }
+
+final GlobalKey globalKey = GlobalKey();
 
 class BlobField extends StatefulWidget {
   const BlobField({super.key});
@@ -79,10 +84,10 @@ class _BlobFieldState extends State<BlobField>
   }
 
   void createBlobField() {
-    const size = Offset(400, 800);
+    const size = Offset(410, 900);
     final offset = Offset(size.dx / 2, size.dy / 2);
-    const blobCount = 3;
-    final radius = size.dx / blobCount;
+    const blobCount = 4;
+    final radius = size.dx / 1;
     const alpha = 0.2;
     blobField(
       offset: offset,
@@ -126,12 +131,36 @@ class _BlobFieldState extends State<BlobField>
     super.dispose();
   }
 
+  Future<Uint8List> captureWidget() async {
+    final RenderRepaintBoundary boundary =
+        globalKey.currentContext?.findRenderObject() as RenderRepaintBoundary;
+
+    final ui.Image image = await boundary.toImage();
+
+    final ByteData? byteData =
+        await image.toByteData(format: ui.ImageByteFormat.png);
+
+    final Uint8List pngBytes = byteData!.buffer.asUint8List();
+
+    return pngBytes;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomPaint(
-        painter: ParticlePainter(particles),
-        child: Container(),
+      body: RepaintBoundary(
+        key: globalKey,
+        child: GestureDetector(
+          onTap: () {
+            captureWidget();
+          },
+          child: SafeArea(
+            child: CustomPaint(
+              painter: ParticlePainter(particles),
+              child: Container(),
+            ),
+          ),
+        ),
       ),
     );
   }
