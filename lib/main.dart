@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:generative_art_playground/rotating_triangular_blob_field.dart';
+import 'package:generative_art_playground/blob_field.dart';
 
 void main() {
   runApp(const MyAnimationApp());
@@ -16,7 +16,7 @@ class MyAnimationApp extends StatelessWidget {
       theme: ThemeData(useMaterial3: true).copyWith(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const RotatingTriangularBlobField(),
+      home: const BlobField(),
     );
   }
 }
