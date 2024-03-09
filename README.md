@@ -1,16 +1,9 @@
-# generative_art_playground
+# Generative Art Playground
 
-A new Flutter project.
+A repository created to experiment with Generative Art in Flutter. Contains following experiments - 
 
-## Getting Started
+1. blob_field.dart
+2. fading_object.dart
+3. moving_particles.dart
+4. rotating_triangular_blob_field.dart
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
